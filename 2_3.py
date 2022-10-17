@@ -34,21 +34,16 @@ while konf >= 1:
         print('Вы ввели ошибочное число конфет')
         player_1 = int(
             input('Сколько конфет возьмет первый игрок? не более 28 шт.: '))
-
-    player_2 = konf % 28+1
-    if player_2 == 0:
-        if konf != 28:
-            player_2 = 27
-            sum_player_2 += player_2
-        elif konf - player_2 <= 28:
-            player_2 = (konf - 28)+1
-        else:
-            player_2 = 28
-            sum_player_2 += player_2
-    elif player_2 == konf:
-        sum_player_2 += player_2 + sum_player_1
-        print(f'Второй игрок взял: {player_2} конфет.')
-        break
+    
+    
+    a = konf // 29
+    if a == 0:
+        player_2 = konf
+    a = a * 29
+    
+    player_2 = konf-a
+    sum_player_2 += player_2
+    
     print(f'Второй игрок взял: {player_2} конфет.')
     konf = konf - player_2
     sum_player_2 += player_2
