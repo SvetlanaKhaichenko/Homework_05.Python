@@ -8,10 +8,8 @@ a) Добавьте игру против бота
 
 b) Подумайте как наделить бота ""интеллектом""
 """
-from random import randint
 
-
-konf = 100
+konf = 121
 sum_player_1 = 0
 sum_player_2 = 0
 
@@ -32,22 +30,26 @@ while konf >= 1:
             break
     else:
         print('Вы ввели ошибочное число конфет')
-        player_1 = int(
-            input('Сколько конфет возьмет первый игрок? не более 28 шт.: '))
-    
-    
+        player_1 = int(input('Сколько конфет возьмет первый игрок? не более 28 шт.: '))
+        konf = konf - player_1
+        sum_player_1 += player_1
+
+
     a = konf // 29
     if a == 0:
         player_2 = konf
     a = a * 29
-    
     player_2 = konf-a
-    sum_player_2 += player_2
-    
-    print(f'Второй игрок взял: {player_2} конфет.')
-    konf = konf - player_2
-    sum_player_2 += player_2
+    if player_2 == 0:
+        player_2 = 28
+        sum_player_2 += player_2
+        konf = konf - player_2
+    else:
+        sum_player_2 += player_2
+        konf = konf - player_2
 
+    print(f'Второй игрок взял: {player_2} конфет.')
+    print(f'Осталось {konf} конфет')
 
 if sum_player_1 > sum_player_2:
     print('Первый игрок сделал ход последним и забирает все конфеты второго игрока.')
